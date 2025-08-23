@@ -9,44 +9,21 @@ cdata.set_quoted('GST_PACKAGE_NAME', 'GStreamer CurlyBracket AI inference')
 cdata.set_quoted('GST_PACKAGE_ORIGIN', 'https://mirab.pythonanywhere.com')
 configure_file(output : 'config.h', configuration : cdata)
 
-gstaudio_dep = dependency('gstreamer-audio-1.0',
-    fallback: ['gst-plugins-base', 'audio_dep'])
+# Dependencies
+gst_dep = dependency('gstreamer-1.0', version : '>=1.20')
+gstvideo_dep = dependency('gstreamer-video-1.0', version : '>=1.20')
 
-# Plugin 1
-plugin_sources = [
-  'src/gstplugin.c'
-  ]
+# Curlyference plugin sources
+curlyference_sources = [
+  'src/gstcurlyference.c',
+  'src/gstcurlyference.h',
+]
 
-gstpluginexample = library('gstplugin',
-  plugin_sources,
+gstcurlyference = library('gstcurlyference',
+  curlyference_sources,
   c_args: plugin_c_args,
-  dependencies : [gst_dep],
+  dependencies : [gst_dep, gstvideo_dep],
   install : true,
   install_dir : plugins_install_dir,
 )
 
-# Plugin 2 (audio filter example)
-audiofilter_sources = [
-  'src/gstaudiofilter.c',
-  ]
-
-gstaudiofilterexample = library('gstaudiofilterexample',
-  audiofilter_sources,
-  c_args: plugin_c_args,
-  dependencies : [gst_dep, gstaudio_dep],
-  install : true,
-  install_dir : plugins_install_dir,
-)
-
-# The TEMPLATE Plugin
-### gstTEMPLATE_sources = [
-###  'src/gstTEMPLATE.c',
-###  ]
-
-###gstTEMPLATEexample = library('gstTEMPLATE',
-###  gstTEMPLATE_sources,
-###  c_args: plugin_c_args,
-###  dependencies : [gst_dep, gstbase_dep],
-###  install : true,
-###  install_dir : plugins_install_dir,
-###)
