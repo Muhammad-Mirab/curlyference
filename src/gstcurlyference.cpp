@@ -57,7 +57,6 @@ gst_curlyference_transform_frame (GstVideoFilter * filter,
     }
     
     // Apply OpenCV image processing operations
-    // Example 1: Edge detection using Canny
     if (input_mat.channels() == 3) {
       cv::Mat gray;
       cv::cvtColor(input_mat, gray, cv::COLOR_BGR2GRAY);
