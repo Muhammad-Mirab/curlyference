@@ -1,4 +1,4 @@
-<h1 align="center">✨ Curlyference – GStreamer + OpenCV Video Filter ✨</h1>
+<h2 align="center">✨ Curlyference – GStreamer + OpenCV Video Filter ✨</h2>
 
 Curlyference is a custom 🎥 GStreamer video filter plugin that applies OpenCV-based image processing on video streams.  
 Currently, it demonstrates edge detection ⚡ (Canny filter) but can be extended to run AI inference 🤖 or any other OpenCV pipeline.
